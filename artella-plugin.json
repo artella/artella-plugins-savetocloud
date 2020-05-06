@@ -1,0 +1,13 @@
+{
+    "name": "Save to Cloud",
+    "icon": "",
+    "package": "Artella",
+    "resources": "resources",
+    "menu": {
+        "id": "artella-plugins-savetocloud",
+        "command": "import artella; artella.DccPlugin().make_new_version(show_dialogs=True)",
+        "tags": ["artella", "save", "cloud"],
+        "label": "Save to Cloud",
+        "icon": ""
+    }
+}
