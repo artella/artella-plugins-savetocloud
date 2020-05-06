@@ -5,7 +5,7 @@
     "resources": "resources",
     "menu": {
         "id": "artella-plugins-savetocloud",
-        "command": "import artella; artella.DccPlugin().make_new_version(show_dialogs=True)",
+        "command": "import artella; plug = artella.PluginsMgr().get_plugin_by_id('artella-plugins-savetocloud'); plug.save_to_cloud()",
         "tags": ["artella", "save", "cloud"],
         "label": "Save to Cloud",
         "icon": ""
