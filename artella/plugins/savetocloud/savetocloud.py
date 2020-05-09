@@ -65,7 +65,7 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
         if make_new_version:
             msg = 'Save to Cloud was completed successully! New file version is available in Artella Drive.'
             logger.log_info(msg)
-            dcc.show_info(msg)
+            dcc.show_info('Save to Cloud', msg)
 
         return make_new_version
 
@@ -84,6 +84,9 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
             return False
 
         file_version = artella_drive_client.file_current_version(current_file)
+        if file_version <= -1:
+            return False
+
         next_version = file_version + 1
         comment, ok = dcc.input_comment(
             'Artella - Save to Cloud', 'Saving {} (version {})\n\nComment:'.format(
