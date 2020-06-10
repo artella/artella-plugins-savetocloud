@@ -39,7 +39,7 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
             return False
 
         artella_drive_client = artella.DccPlugin().get_client()
-        if not artella_drive_client or not artella_drive_client.get_remote_sessions(update=True):
+        if not artella_drive_client or not artella_drive_client.check(update=True):
             return False
 
         if not file_path:
