@@ -43,6 +43,7 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
             return False
 
         if not file_path:
+            dcc.save_scene()
             file_path = dcc.scene_name()
             if not file_path:
                 artella.DccPlugin().show_warning_message(
