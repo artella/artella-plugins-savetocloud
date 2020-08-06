@@ -42,6 +42,20 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
         if not artella_drive_client or not artella_drive_client.check(update=True):
             return False
 
+        if not file_path:
+            file_path = dcc.scene_name()
+
+        do_save = False
+        if not file_path:
+            dcc.save_scene()
+            file_path = dcc.scene_name()
+            do_save = True
+            if not file_path:
+                artella.DccPlugin().show_warning_message(
+                    text='Please open a file before creating a new version',
+                    title='Save to Cloud - Artella Failed to make new version')
+                return False
+
         can_lock = artella_drive_client.can_lock_file(file_path=file_path)
         if not can_lock:
             msg = 'Unable to lock file to make new version. File is already locked by other user.'
@@ -52,12 +66,12 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
         if comment is False:
             return False
 
-        if not file_path:
+        if not do_save:
             dcc.save_scene()
             file_path = dcc.scene_name()
             if not file_path:
                 artella.DccPlugin().show_warning_message(
-                    text='Please open a file before creating a new version',
+                    text='Was not possible to save current scene.',
                     title='Save to Cloud - Artella Failed to make new version')
                 return False
 
