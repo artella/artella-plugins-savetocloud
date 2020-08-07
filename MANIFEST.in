@@ -1,5 +1,5 @@
 include versioneer.py
 include artella/plugins/savetocloud/artella-plugin.json
 include artella/plugins/savetocloud/_version.py
-recursive-include artella/plugins/savetocloud/resources/* *.*
+include artella/plugins/savetocloud/resources/savetocloud.png
 recursive-exclude * *.py[co]
