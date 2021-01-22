@@ -92,6 +92,10 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
         :rtype: str
         """
 
+        artella_drive_client = api.get_client()
+        if not artella_drive_client or not artella_drive_client.check(update=True):
+            return False
+
         file_version = artella_drive_client.file_current_version(current_file)
         if file_version <= -1:
             comment, ok = dcc.input_comment(
