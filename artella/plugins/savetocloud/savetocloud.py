@@ -10,7 +10,7 @@ from __future__ import print_function, division, absolute_import
 import os
 
 from artella import dcc, api
-from artella.core import plugin
+from artella.core import plugin, utils
 
 
 class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
@@ -54,6 +54,8 @@ class SaveToCloudPlugin(plugin.ArtellaPlugin, object):
                     text='Please open a file before creating a new version',
                     title='Save to Cloud - Artella Failed to make new version')
                 return False
+
+        file_path = utils.clean_path(file_path)
 
         can_lock = artella_drive_client.can_lock_file(file_path=file_path)
         if not can_lock:
